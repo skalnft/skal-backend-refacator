@@ -23,3 +23,22 @@ model User {
 
     @@map("users")
 }
+
+model EventCategory {
+
+    id              String      @id @default(uuid())
+    name            String      @unique
+
+    @@map("enventcategories")
+}
+
+model Ipfs {
+
+    id              String      @id @default(uuid())
+
+    ipnft           String      @unique
+    url             String      @unique
+    isMinted        Boolean     @default(false)
+
+    @@map("ipfsMint")
+}

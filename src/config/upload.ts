@@ -1,5 +1,4 @@
 import multer, { Options } from "multer";
-import { resolve } from "path";
 import crypto from 'crypto';
 
 export default {

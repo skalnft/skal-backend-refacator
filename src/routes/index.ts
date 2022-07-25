@@ -1,17 +1,16 @@
-import { Request, Response, Router } from "express";
-import FormData from "form-data";
 import fs from 'fs';
 import axios from "axios";
 import multer from "multer";
+import FormData from "form-data";
 import uploadConfig from "../config/upload";
+import { Request, Response, Router } from "express";
 import { usersRoutes } from "./users.routes";
+import { prisma } from "../database/prismaClient";
 
 const routes = Router();
 const data = new FormData();
 
-const uploadFile = multer(uploadConfig.upload('./temp'))
-
-let ifps = '';
+const uploadFile = multer(uploadConfig.upload('./temp'));
 
 routes.get('', (request: Request, response: Response) => {
     return response.send({
@@ -45,18 +44,33 @@ routes.post('/upload', uploadFile.single('file'), async (request, response) => {
       };
     
       const res = await axios.request(options);
-
       const json = await res.data;
 
-      ifps = json.data.url;
+      const { url } = json.data;
+      const { ipnft } = json.data;
+
+      const createIpfs = await prisma.ipfs.create({
+          data: {
+            url,
+            ipnft
+          }
+      })
+
+      
       console.log(json);
 
-      return response.status(201).send({ message: "Created", filename })
+      return response.status(201).send({ message: "Created", createIpfs });
 });
 
 routes.post('/mint', async (request, response) => {
 
-    const { wallet } = request.body
+    const { wallet, id } = request.body
+
+    const ifps = await prisma.ipfs.findFirst({
+      where: {
+        id
+      }
+    })
 
     const dataJson = {
       "wallet": wallet || process.env.SEED_WALLET,
@@ -64,7 +78,7 @@ routes.post('/mint', async (request, response) => {
       "network" : "mainnet",
       "amount": 1,
       "tokenCategory": "soulbound", //optional (Only applicable for type ERC721)
-      "tokenUri": ifps
+      "tokenUri": ifps.url
     }
 
     const opts = {
@@ -79,6 +93,17 @@ routes.post('/mint', async (request, response) => {
     
     const res = await axios.request(opts);
     const data = await res.data;
+
+    if(data.status === "confirmed") {
+        await prisma.ipfs.update({
+          data: {
+            isMinted: true
+          },
+          where: {
+            id
+          }
+        })
+    }
 
     console.log(data);
     
