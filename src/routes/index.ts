@@ -25,7 +25,12 @@ routes.post('/upload', uploadFile.single('file'), async (request, response) => {
     const filename = request.file.destination +'/'+ request.file.filename;
     const { name, description } = request.body;
 
-    data.append('metadata', `{"name":"nome", "description":"descricao"}`);
+    const metadataOBJ = {
+        name,
+        description
+    }; 
+
+    data.append('metadata', JSON.stringify(metadataOBJ));
     data.append('image', fs.createReadStream(filename));
     data.append('asset', fs.createReadStream(filename));
 
