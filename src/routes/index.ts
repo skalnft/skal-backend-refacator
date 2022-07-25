@@ -4,6 +4,7 @@ import fs from 'fs';
 import axios from "axios";
 import multer from "multer";
 import uploadConfig from "../config/upload";
+import { usersRoutes } from "./users.routes";
 
 const routes = Router();
 const data = new FormData();
@@ -78,5 +79,7 @@ routes.post('/mint', async (request, response) => {
     
     return response.status(201).send({ message: "Minted!!" })
 });
+
+routes.use("/users/account", usersRoutes);
 
 export { routes };
