@@ -11,34 +11,55 @@ datasource db {
 }
 
 model User {
-    id              String      @id @default(uuid())
+  id String @id @default(uuid())
 
-    username        String?
-    wallet          String      @unique
-    isAdmin         Boolean     @default(false)
-    profile         String?
-    banner          String?
+  username String?
+  wallet   String  @unique
+  isAdmin  Boolean @default(false)
+  profile  String?
+  banner   String?
 
-    created_at      DateTime    @default(now())
+  events Event[]
 
-    @@map("users")
+  created_at DateTime @default(now())
+
+  @@map("users")
 }
 
 model EventCategory {
+  id    String  @id @default(uuid())
+  name  String  @unique
+  events Event[]
 
-    id              String      @id @default(uuid())
-    name            String      @unique
+  @@map("enventcategories")
+}
 
-    @@map("enventcategories")
+model Event {
+  id String @id @default(uuid())
+
+  title       String
+  description String
+  locality       String
+  start_at    DateTime
+  admin       String
+  user_id     User          @relation(fields: [admin], references: [id])
+  banner      String?
+  profile     String?
+  category_id String
+  category    EventCategory @relation(fields: [category_id], references: [id])
+  isDone      Boolean       @default(true)      
+
+  created_at  DateTime      @default(now())
+
+  @@map("events")
 }
 
 model Ipfs {
+  id String @id @default(uuid())
 
-    id              String      @id @default(uuid())
+  ipnft    String  @unique
+  url      String  @unique
+  isMinted Boolean @default(false)
 
-    ipnft           String      @unique
-    url             String      @unique
-    isMinted        Boolean     @default(false)
-
-    @@map("ipfsMint")
+  @@map("ipfsMint")
 }
