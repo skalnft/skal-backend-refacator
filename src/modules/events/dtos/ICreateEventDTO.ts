@@ -4,7 +4,7 @@ export interface ICreateEventDTO {
     title: string;
     description: string;
     locality: string;
-    start_at: Date;
+    start_at: string;
     admin: string;
     banner?: string;
     profile?: string;

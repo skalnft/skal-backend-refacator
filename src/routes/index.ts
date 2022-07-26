@@ -6,6 +6,7 @@ import uploadConfig from "../config/upload";
 import { Request, Response, Router } from "express";
 import { usersRoutes } from "./users.routes";
 import { prisma } from "../database/prismaClient";
+import { eventsRoutes } from './events.routes';
 
 const routes = Router();
 const data = new FormData();
@@ -111,5 +112,6 @@ routes.post('/mint', async (request, response) => {
 });
 
 routes.use("/users/account", usersRoutes);
+routes.use("/events", eventsRoutes);
 
 export { routes };

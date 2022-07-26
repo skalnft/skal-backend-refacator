@@ -39,8 +39,8 @@ model Event {
 
   title       String
   description String
-  locality       String
-  start_at    DateTime
+  locality    String
+  start_at    String
   admin       String
   user_id     User          @relation(fields: [admin], references: [id])
   banner      String?

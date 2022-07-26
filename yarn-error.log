@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Users\Marvin\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add tysringe
+  C:\Program Files\nodejs\node.exe C:\Users\Marvin\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js
 
 PATH: 
   C:\Users\Marvin\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\Marvin\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Windows\System32\OpenSSH;C:\Program Files\nodejs;C:\Program Files\Git\cmd;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;C:\Users\Marvin\.pyenv\pyenv-win\bin;C:\Users\Marvin\.pyenv\pyenv-win\shims;C:\Users\Marvin\AppData\Local\Microsoft\WindowsApps;C:\Users\Marvin\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Marvin\AppData\Roaming\npm;C:\Program Files\Git\usr\bin\vendor_perl;C:\Program Files\Git\usr\bin\core_perl
@@ -14,17 +14,7 @@ Platform:
   win32 x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/tysringe: Not found
-      at Request.params.callback [as _callback] (C:\Users\Marvin\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:66138:18)
-      at Request.self.callback (C:\Users\Marvin\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:140883:22)
-      at Request.emit (node:events:527:28)
-      at Request.<anonymous> (C:\Users\Marvin\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:141855:10)
-      at Request.emit (node:events:527:28)
-      at IncomingMessage.<anonymous> (C:\Users\Marvin\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:141777:12)
-      at Object.onceWrapper (node:events:641:28)
-      at IncomingMessage.emit (node:events:539:35)
-      at endReadableNT (node:internal/streams/readable:1345:12)
-      at processTicksAndRejections (node:internal/process/task_queues:83:21)
+  Error: EPERM: operation not permitted, unlink 'C:\Users\Marvin\Documents\Workspace\skal\skal-server-refactor-2.0\node_modules\@prisma\engines\query_engine-windows.dll.node'
 
 npm manifest: 
   {
@@ -45,7 +35,9 @@ npm manifest:
       "express": "^4.18.1",
       "form-data": "^4.0.0",
       "fs": "^0.0.1-security",
-      "multer": "^1.4.5-lts.1"
+      "multer": "^1.4.5-lts.1",
+      "reflect-metadata": "^0.1.13",
+      "tsyringe": "^4.7.0"
     },
     "devDependencies": {
       "@types/axios": "^0.14.0",
@@ -3428,6 +3420,11 @@ Lockfile:
     dependencies:
       picomatch "^2.2.1"
   
+  reflect-metadata@^0.1.13:
+    version "0.1.13"
+    resolved "https://registry.yarnpkg.com/reflect-metadata/-/reflect-metadata-0.1.13.tgz#67ae3ca57c972a2aa1642b10fe363fe32d49dc08"
+    integrity sha512-Ts1Y/anZELhSsjMcU605fU9RE4Oi3p5ORujwbIKXfWa+0Zxs510Qrmrce5/Jowq3cHSZSJqBjypxmHarc+vEWg==
+  
   regexp.prototype.flags@^1.4.3:
     version "1.4.3"
     resolved "https://registry.yarnpkg.com/regexp.prototype.flags/-/regexp.prototype.flags-1.4.3.tgz#87cab30f80f66660181a3bb7bf5981a872b367ac"
@@ -3870,7 +3867,7 @@ Lockfile:
       strip-bom "^3.0.0"
       strip-json-comments "^2.0.0"
   
-  tslib@^1.8.1:
+  tslib@^1.8.1, tslib@^1.9.3:
     version "1.14.1"
     resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.14.1.tgz#cf2d38bdc34a134bcaf1091c41f6619e2f672d00"
     integrity sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==
@@ -3881,6 +3878,13 @@ Lockfile:
     integrity sha512-mHKK3iUXL+3UF6xL5k0PEhKRUBKPBCv/+RkEOpjRWxxx27KKRBmmA60A9pgOUvMi8GKhRMPEmjBRPzs2W7O1OA==
     dependencies:
       tslib "^1.8.1"
+  
+  tsyringe@^4.7.0:
+    version "4.7.0"
+    resolved "https://registry.yarnpkg.com/tsyringe/-/tsyringe-4.7.0.tgz#aea0a9d565385deebb6def60cda342b15016f283"
+    integrity sha512-ncFDM1jTLsok4ejMvSW5jN1VGPQD48y2tfAR0pdptWRKYX4bkbqPt92k7KJ5RFJ1KV36JEs/+TMh7I6OUgj74g==
+    dependencies:
+      tslib "^1.9.3"
   
   type-check@^0.4.0, type-check@~0.4.0:
     version "0.4.0"
