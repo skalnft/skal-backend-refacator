@@ -5,7 +5,7 @@ const usersRoutes = Router();
 
 
 
-usersRoutes.post("/", (request, response) => {
+usersRoutes.post("/account", (request, response) => {
     createAccountController.handle(request, response);
 });
 
