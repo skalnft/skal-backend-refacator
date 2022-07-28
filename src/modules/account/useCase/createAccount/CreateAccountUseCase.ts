@@ -1,3 +1,4 @@
+import { hash } from 'bcrypt';
 import { User } from '@prisma/client';
 import { IUserRepository } from './../../repositories/IUserRepository';
 
@@ -6,6 +7,8 @@ interface IRequest {
     wallet: string;
 }
 
+
+
 export class CreateAccountUseCase {
 
     constructor(
@@ -13,6 +16,7 @@ export class CreateAccountUseCase {
     ) {}
 
     async execute({ username, wallet }: IRequest): Promise<User> {
+        
         const user = await this.userRepository.create({
             username,
             wallet

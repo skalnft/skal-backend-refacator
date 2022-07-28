@@ -6,6 +6,7 @@ import { usersRoutes } from "./users.routes";
 import { prisma } from "../database/prismaClient";
 import { eventsRoutes } from './events.routes';
 import { uploadFileController } from '../modules/mint/useCase/upload';
+import { ensureAuthenticateWallet } from "../middlewares/ensureAuthenticateWallet";
 
 const routes = Router();
 
@@ -18,11 +19,11 @@ routes.get('', (request: Request, response: Response) => {
     })
 });
 
-routes.post('/upload', uploadFile.single('file'), (request, response) => {
+routes.post('/upload', ensureAuthenticateWallet, uploadFile.single('file'), (request, response) => {
     uploadFileController.handle(request, response);
 });
 
-routes.post('/mint', async (request, response) => {
+routes.post('/mint', ensureAuthenticateWallet,async (request, response) => {
 
     const { wallet, id } = request.body
 
