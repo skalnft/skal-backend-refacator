@@ -26,9 +26,14 @@ const ensureAuthenticateWallet = async (request: Request, response: Response, ne
         if(!user) {
             throw new Error("User not exists!");
         };
+
+        request.account = { id: user_id };
+
+        next();
     } catch(err) {
         throw new Error("Invalid token!!")
     }
+    
 }
 
 export { ensureAuthenticateWallet }

@@ -1,9 +1,16 @@
+import { Event } from '@prisma/client';
 import { prisma } from '../../../../database/prismaClient';
 import { ICreateEventDTO } from '../../dtos/ICreateEventDTO';
 import { IEventsRepository } from './../IEventsRepository';
 
 
 export class EventsRepository implements IEventsRepository {
+    
+    async listEvents(): Promise<Event[]> {
+        
+        const events = await prisma.event.findMany();
+        return events;
+    }
 
     async create({
         title, 
