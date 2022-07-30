@@ -1,3 +1,4 @@
+import { ensureAdmin } from './../middlewares/ensureAdmin';
 import { CreateEventController } from './../modules/events/useCase/createEvents/CreateEventController';
 import { Router } from "express";
 import { createEventsCategoriesController } from "../modules/events/useCase/createEventsCategories";

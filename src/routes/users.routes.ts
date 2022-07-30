@@ -2,6 +2,7 @@ import { AuthenticateAccountUseCase } from './../modules/account/useCase/authent
 import { UserRepository } from './../modules/account/repositories/implamentations/UserRepository';
 import { Router } from "express";
 import { createAccountController } from "../modules/account/useCase/createAccount";
+import { ensureAuthenticateWallet } from '../middlewares/ensureAuthenticateWallet';
 
 const usersRoutes = Router();
 

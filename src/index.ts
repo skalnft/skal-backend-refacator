@@ -1,7 +1,8 @@
 import 'dotenv/config';
 import "reflect-metadata";
-import express, { NextFunction, Request, Response } from "express"; 
+import "express-async-errors";
 import { routes } from "./routes";
+import express, { NextFunction, Request, Response } from "express"; 
 
 const PORT = process.env.PORT || 3333;
 
