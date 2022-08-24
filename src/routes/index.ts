@@ -1,3 +1,4 @@
+import "reflect-metadata";
 import axios from "axios";
 import multer from "multer";
 import uploadConfig from "../config/upload";

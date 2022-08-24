@@ -47,7 +47,8 @@ model Event {
   profile     String?
   category_id String
   category    EventCategory @relation(fields: [category_id], references: [id])
-  isDone      Boolean       @default(true)      
+  isDone      Boolean       @default(true)
+  ticket      Ticket?
 
   created_at  DateTime      @default(now())
 
@@ -62,4 +63,16 @@ model Ipfs {
   isMinted Boolean @default(false)
 
   @@map("ipfsMint")
+}
+
+
+model Ticket {
+    id     String   @id @default(uuid())
+
+    quantity Int
+    price Int?
+    event_id       String @unique
+    event          Event @relation(fields: [event_id], references: [id])
+
+    @@map("tickets")
 }

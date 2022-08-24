@@ -20,7 +20,7 @@ export class EventsRepository implements IEventsRepository {
         category_id, 
         admin,
         banner,
-        profile
+        profile,
     }: ICreateEventDTO): Promise<void> {
         const event = await prisma.event.create({
             data: {
@@ -31,9 +31,19 @@ export class EventsRepository implements IEventsRepository {
                 category_id,
                 admin,
                 banner,
-                profile
+                profile,
             }
         })
+    }
+
+    async getEventById(id: string): Promise<Event> {
+        const event = await prisma.event.findFirst({
+            where: {
+                id
+            }
+        });
+
+        return event;
     }
     
 }

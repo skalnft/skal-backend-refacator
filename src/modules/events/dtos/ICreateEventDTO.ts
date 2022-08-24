@@ -8,5 +8,5 @@ export interface ICreateEventDTO {
     admin: string;
     banner?: string;
     profile?: string;
-    category_id: string
+    category_id: string,
 }
